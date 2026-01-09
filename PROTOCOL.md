@@ -63,6 +63,7 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 
 1.  **Project General Progress Report:** (e.g., `docs/PROGRESS.md`) - Update the overall status.
 2.  **Branch/Topic Specific Document:** (e.g., `docs/requirements/my_feature.md`) - Update detailed checklists and notes.
+3.  **Scripts Catalog:** If any permanent scripts were added/modified, update `SCRIPTS_CATALOG.md`.
 
 ### 2.3. Verification Standard <!-- CUSTOMIZE -->
 - **Test Command:** Run `[command]` before requesting any commit.
@@ -71,7 +72,9 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 
 ### 2.4. Architectural Constraints <!-- CUSTOMIZE -->
 - **Headless-First:** ALL core functionality MUST be accessible via CLI. No UI-only features.
-- **CLI Entry Points:** Use `uv run <script.py> [args]` for all commands. Design for scriptability.
+- **CLI Entry Points:** Use `uv run scripts/<category>/<script.py> [args]` for all commands.
+- **Scripts Catalog:** Before creating ANY script, MUST check `SCRIPTS_CATALOG.md` for existing solutions.
+- **Temp Scripts:** Use `scripts/temp/` for experimental/WIP scripts (gitignored). Promote to permanent if reusable.
 - **Forbidden Libraries:** [List libraries or patterns to avoid]
 - **Preferred Libraries:** Native/standard library first, then vetted third-party.
 - **Directory Structure:** Do not create files in root without permission. Follow the established folder hierarchy.

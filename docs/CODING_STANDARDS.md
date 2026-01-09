@@ -269,9 +269,12 @@ project/
 │   └── logic.py         # Pure business logic (UI-agnostic)
 ├── services/
 │   └── external.py      # I/O operations
-└── scripts/
-    ├── process_data.py  # uv run scripts/process_data.py [args]
-    └── generate_report.py
+├── scripts/
+│   ├── temp/            # Temporary scripts (gitignored) - current branch only
+│   ├── data/            # Data processing scripts
+│   ├── migration/       # Migration scripts
+│   └── utils/           # Utility scripts
+└── SCRIPTS_CATALOG.md   # Index of all permanent scripts
 ```
 
 #### CLI Entry Point Template
@@ -349,6 +352,55 @@ parser.add_argument("--output", "-o", help="output")  # Too vague!
 ```
 
 **The `--help` output IS the documentation.** No separate docs needed for CLI usage.
+
+### 5.4. Scripts Management (Mandatory)
+
+#### Directory Structure
+
+| Directory | Purpose | Git Status |
+|-----------|---------|------------|
+| `scripts/temp/` | Temporary, branch-specific scripts | **Gitignored** |
+| `scripts/<category>/` | Permanent, reusable scripts | Committed |
+
+**Categories** (create as needed): `data/`, `migration/`, `utils/`, `reports/`, `maintenance/`
+
+#### Scripts Catalog (`SCRIPTS_CATALOG.md`)
+
+Maintain a catalog at project root listing ALL permanent scripts. AI agents MUST consult this before creating new scripts.
+
+```markdown
+# Scripts Catalog
+
+## Data Processing (`scripts/data/`)
+
+| Script | Description | Usage |
+|--------|-------------|-------|
+| `export_users.py` | Export users to CSV | `uv run scripts/data/export_users.py --format csv` |
+| `import_data.py` | Import from JSON | `uv run scripts/data/import_data.py <file>` |
+
+## Migration (`scripts/migration/`)
+
+| Script | Description | Usage |
+|--------|-------------|-------|
+| `migrate_v1_to_v2.py` | Migrate old schema | `uv run scripts/migration/migrate_v1_to_v2.py` |
+```
+
+#### Workflow Rules
+
+| Rule | Description |
+|------|-------------|
+| **Check catalog first** | Before creating a script, AI MUST check `SCRIPTS_CATALOG.md` for existing solutions |
+| **Temp for experiments** | Use `scripts/temp/` for one-off or WIP scripts |
+| **Promote if reusable** | Move useful temp scripts to permanent location + update catalog |
+| **Clean on merge** | `scripts/temp/` should be empty (gitignored handles this) |
+| **Always document** | Every permanent script must be in the catalog with usage example |
+
+#### .gitignore Entry
+
+```gitignore
+# Temporary scripts (branch-specific, not committed)
+scripts/temp/
+```
 
 ---
 
