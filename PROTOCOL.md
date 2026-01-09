@@ -1,4 +1,10 @@
-# Project Name - Master Context
+# AI-Assisted Development Protocol
+
+> **Template for AI Agent Context Files** (e.g., `CLAUDE.md`, `GEMINI.md`, `COPILOT.md`)
+>
+> Copy this file to your project root, rename it to match your AI tool, and customize the `<!-- CUSTOMIZE -->` sections.
+
+---
 
 ## 0. Core Protocol: Context & Requirements (MANDATORY)
 
@@ -16,21 +22,24 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 
 **Universal Rule:** This "Branch -> Requirement (with Status)" workflow is the default standard for ALL projects.
 
-## 1. Project Overview
+## 1. Project Overview <!-- CUSTOMIZE -->
 
-- **Goal:** [Enter Goal Here]
-- **Tech Stack:** [Enter Stack Here]
+- **Goal:** [Enter project goal]
+- **Tech Stack:** [Enter primary languages/frameworks]
 
-## 1.1. Tooling & Environment
+### 1.1. Tooling & Environment <!-- CUSTOMIZE -->
 - **Package Manager:** [e.g., uv, pnpm, cargo] - STRICTLY USE THIS.
 - **Environment:** [e.g., Local .venv, Docker]
-- **Run Commands:** [List standard run/build/test commands]
+- **Run Commands:**
+  - Build: `[command]`
+  - Test: `[command]`
+  - Lint: `[command]`
 
 ## 2. Coding Standards & Conventions
 
-- **Standard Compliance:** All code must strictly follow the patterns defined in `docs/coding_standards.md`.
-- **Reference Instruction:** When asking for code generation, use the trigger: "Generate code following the standards in docs/coding_standards.md."
-- **Standard Operating Procedure:** Before generating any code, you MUST read `docs/coding_standards.md`.
+- **Standard Compliance:** All code must strictly follow the patterns defined in `docs/CODING_STANDARDS.md`.
+- **Reference Instruction:** When asking for code generation, use the trigger: "Generate code following the standards in docs/CODING_STANDARDS.md."
+- **Standard Operating Procedure:** Before generating any code, you MUST read `docs/CODING_STANDARDS.md`.
 - **Research First:** Before writing code, you MUST verify the latest recommended patterns for the specific library/framework. Do not rely on outdated assumptions.
 
 ### 2.1. Strict Protocol: Git Branching & Scope
@@ -55,12 +64,15 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 1.  **Project General Progress Report:** (e.g., `docs/PROGRESS.md`) - Update the overall status.
 2.  **Branch/Topic Specific Document:** (e.g., `docs/requirements/my_feature.md`) - Update detailed checklists and notes.
 
-### 2.3. Verification Standard
-- **Test Command:** Run `[insert command]` before requesting any commit.
-- **Lint Command:** Run `[insert command]` to ensure style compliance.
+### 2.3. Verification Standard <!-- CUSTOMIZE -->
+- **Test Command:** Run `[command]` before requesting any commit.
+- **Lint Command:** Run `[command]` to ensure style compliance.
 - **Definition of Done:** All tests pass, linting passes, and documentation is updated.
 
-### 2.4. Architectural Constraints
+### 2.4. Architectural Constraints <!-- CUSTOMIZE -->
+- **Headless-First:** ALL core functionality MUST be accessible via CLI. No UI-only features.
+- **CLI Entry Points:** Use `uv run <script.py> [args]` for all commands. Design for scriptability.
 - **Forbidden Libraries:** [List libraries or patterns to avoid]
+- **Preferred Libraries:** Native/standard library first, then vetted third-party.
 - **Directory Structure:** Do not create files in root without permission. Follow the established folder hierarchy.
 - **Security:** Never commit secrets or hardcoded credentials. Use environment variables.
