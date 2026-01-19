@@ -10,9 +10,9 @@
 
 | Field | Value |
 |-------|-------|
-| **Current Phase** | **Protocol Refinement & Consolidation** |
-| **Done** | Standardization of Agent Tools |
-| **Active Branch** | `main` |
+| **Current Phase** | **Ready for Deployment** |
+| **Done** | Restructuring to 'Seed Bank' Architecture |
+| **Active Branch** | `master` |
 | **Last Updated** | 2026-01-20 |
 
 ---
@@ -21,7 +21,7 @@
 
 > Tasks currently in progress. Move to Completed when done.
 
-- [x] Define standard tool definitions for agents (JIT Context Architecture) — *Owner: AI* — *Branch: feat/20260120-120000-jit-context-protocol*
+- [ ] (No active tasks)
 
 ---
 
@@ -39,6 +39,8 @@
 
 > Finished work. Include date and relevant branch/PR.
 
+- [x] **2026-01-20:** Restructured repo to 'Seed Bank' architecture, implemented `bootstrap.py`. — *Branch: feat/20260120-135500-testing-setup*
+- [x] **2026-01-20:** Define standard tool definitions for agents (JIT Context Architecture) — *Branch: feat/20260120-120000-jit-context-protocol*
 - [x] **2026-01-20:** Created `README.md` and `LICENSE`. — *Branch: main*
 - [x] **2026-01-20:** Scanned and consolidated protocols from `cenomi/odoo_v1` and `cv-maker`. — *Branch: main*
 - [x] **2026-01-20:** Created `examples/` directory with real-world protocol usages. — *Branch: main*
