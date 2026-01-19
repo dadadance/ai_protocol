@@ -18,7 +18,19 @@ This protocol bridges the gap between raw LLM capabilities and professional engi
 3.  **Functional-First Standards:** Promotes pure functions, immutability, and composition for testable and predictable codebases.
 4.  **Scripts Catalog:** A centralized registry (`SCRIPTS-CATALOG.md`) that acts as the "Source of Truth" for automation scripts.
 
-## 🚀 How to Adopt (New or Existing Projects)
+## ⚡ Quick Start: New Project
+
+If you are starting a brand new project, use this one-liner from your projects directory:
+
+```bash
+# 1. Create and initialize the project
+mkdir my-new-project && cd my-new-project && git init
+
+# 2. Inject the Protocol (assuming ai-protocol is a sibling directory)
+uv run ../ai-protocol/scripts/bootstrap.py . --agent gemini
+```
+
+## 🚀 How to Adopt (Existing Projects)
 
 ### 1. Run the Bootstrap Script
 From within this `ai_protocol` repository, run the bootstrapper pointing to your target project:

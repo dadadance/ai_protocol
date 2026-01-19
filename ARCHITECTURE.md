@@ -15,6 +15,7 @@ ai_protocol/ (Root)
 │   │
 │   ├── docs/ ......................... [Documentation Templates]
 │   │   ├── CODING_STANDARDS.md         # Template engineering standards
+│   │   ├── TESTING.md                  # Template testing strategy
 │   │   ├── PROGRESS.md                 # Template progress tracker
 │   │   ├── context_registry.json       # JIT context mapping
 │   │   └── requirements/
