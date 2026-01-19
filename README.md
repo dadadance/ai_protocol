@@ -1,31 +1,58 @@
-# AI Protocol & Context Management
+# AI Agent Development Protocol (AADP)
 
-This repository stores the "AI Context Files" (e.g., `CLAUDE.md`, `GEMINI.md`) and standard protocols used to guide AI agents in software projects.
+A battle-tested, general-purpose framework designed to orchestrate AI agents (Gemini, Claude, GPT) for high-performance, safe, and context-aware software development. 
 
-## Usage
+This protocol bridges the gap between raw LLM capabilities and professional engineering standards by enforcing a JIT (Just-In-Time) context architecture and strict operational handshakes.
 
-1.  **Copy the Template:**
-    - Copy `PROTOCOL.md` to your project's root directory.
-    - Rename it to match your AI tool (e.g., `CLAUDE.md` or `GEMINI.md`).
+## 🎯 Purpose
 
-2.  **Customize:**
-    - Fill in the `<!-- CUSTOMIZE -->` sections in the copied file.
-    - Define your project's `Goal`, `Tech Stack`, and `Architecture`.
-    - Update the `Tooling & Environment` section with your specific commands.
+- **Zero-Hallucination Context:** Agents fetch task-specific requirements and standards dynamically.
+- **Strict Safety Handshakes:** Mandatory explanation and confirmation for all system-modifying actions.
+- **Headless-First Engineering:** Prioritizes CLI accessibility and scriptability over fragile UI-only logic.
+- **Project Agnostic:** Designed to be dropped into any project (New or Existing, Python, JS, Go, etc.).
 
-3.  **Establish Standards:**
-    - Copy `docs/CODING_STANDARDS.md` to your project's `docs/` folder (or customize it).
-    - Ensure your AI agent reads these files at the start of every session.
+## ✨ Core Pillars
 
-## Examples
+1.  **JIT Context Injection:** Uses `scripts/context.py` to pull precise sections of documentation into the agent's context window.
+2.  **Strict Branching & Scope:** Forces a "Branch -> Requirement -> Implementation" workflow to prevent scope creep and logic fragmentation.
+3.  **Functional-First Standards:** Promotes pure functions, immutability, and composition for testable and predictable codebases.
+4.  **Scripts Catalog:** A centralized registry (`SCRIPTS-CATALOG.md`) that acts as the "Source of Truth" for automation scripts.
 
-See the `examples/` directory for real-world usages:
-- `examples/DJANGO_CLAUDE.md`: A Django-based CV Maker project.
-- `examples/ODOO_GEMINI.md`: An Odoo 18 enterprise integration project.
-- `examples/ODOO_STANDARDS_EXAMPLE.md`: Detailed coding standards for Odoo.
+## 🚀 How to Adopt (New or Existing Projects)
 
-## Core Philosophy
+### 1. Run the Bootstrap Script
+From within this `ai_protocol` repository, run the bootstrapper pointing to your target project:
 
-- **Context is King:** The AI must know *where* it is (branch), *what* it is doing (requirements), and *how* to do it (standards) before writing code.
-- **Strict Safety:** AI agents must never execute dangerous commands without permission.
-- **Documentation First:** Requirements and progress must be updated *as part of the work*, not after.
+```bash
+uv run scripts/bootstrap.py /path/to/your/project --agent gemini
+```
+
+### 2. Verify and Customize
+The script will inject all necessary files. You may want to:
+- Review and edit `docs/context_registry.json` if you have custom documentation paths.
+- Customize `docs/CODING_STANDARDS.md` for your specific tech stack.
+
+### 3. Initialize your Agent
+Open your project and provide your AI agent with this activation prompt:
+> "I have initialized the AI Protocol for this project. Please read GEMINI.md to bootstrap your context and confirm you are ready."
+
+## 📁 Repository Structure
+
+```text
+.
+├── PROTOCOL.md           # Full protocol content (Master Source)
+├── PROTOCOL_BOOTLOADER.md # Lightweight entry point for agents (Template)
+├── GEMINI.md             # Example: JIT bootloader for Gemini agents
+├── SCRIPTS-CATALOG.md    # Registry of automation scripts
+├── docs/
+│   ├── CODING_STANDARDS.md  # Universal engineering guidelines
+│   ├── PROGRESS.md          # Project-wide status tracker (Template)
+│   ├── context_registry.json # Mapping for JIT context fetching
+│   └── requirements/        # Task-specific requirement documents
+└── scripts/
+    ├── context.py           # The JIT context engine
+    └── bootstrap.py         # The one-command protocol installer
+```
+
+## 📄 License
+[MIT License](./LICENSE)

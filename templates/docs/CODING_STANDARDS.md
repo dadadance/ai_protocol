@@ -1,6 +1,8 @@
 # Coding Standards
 
-> These standards apply to all code in this project. AI agents MUST read this before generating code.
+> **Template for Engineering Guidelines**
+>
+> These standards apply to all code in this project. AI agents MUST read this before generating code. Customize the sections below to match your project's specific paradigm and library preferences.
 
 ---
 

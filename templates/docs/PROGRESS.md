@@ -1,6 +1,8 @@
 # Project Progress Report
 
-> Track overall project status, milestones, and history.
+> **Template for Project Tracking**
+>
+> Use this file to track overall project status, milestones, and history. Copy this to your project root and clear the "Completed Tasks" to start fresh.
 
 ---
 
@@ -37,6 +39,7 @@
 
 > Finished work. Include date and relevant branch/PR.
 
+- [x] **2026-01-20:** Created `README.md` and `LICENSE`. — *Branch: main*
 - [x] **2026-01-20:** Scanned and consolidated protocols from `cenomi/odoo_v1` and `cv-maker`. — *Branch: main*
 - [x] **2026-01-20:** Created `examples/` directory with real-world protocol usages. — *Branch: main*
 - [x] **2026-01-20:** Updated `PROTOCOL.md` template with Architecture section and strict safety rules. — *Branch: main*
