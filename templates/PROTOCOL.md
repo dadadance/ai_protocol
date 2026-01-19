@@ -72,7 +72,7 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 3.  **Scripts Catalog:** If any permanent scripts were added/modified, update `SCRIPTS_CATALOG.md`.
 
 ### 2.3. Verification Standard <!-- CUSTOMIZE -->
-- **Test Command:** Run `[command]` before requesting any commit.
+- **Test Command:** Run `[command]` (Ref: `docs/TESTING.md`) before requesting any commit.
 - **Lint Command:** Run `[command]` to ensure style compliance.
 - **Definition of Done:** All tests pass, linting passes, and documentation is updated.
 

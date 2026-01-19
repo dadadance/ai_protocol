@@ -75,6 +75,7 @@ def main():
         
         # Docs
         "docs/CODING_STANDARDS.md": "docs/CODING_STANDARDS.md",
+        "docs/TESTING.md": "docs/TESTING.md",
         "docs/PROGRESS.md": "docs/PROGRESS.md",
         "docs/context_registry.json": "docs/context_registry.json",
         "docs/requirements/TEMPLATE.md": "docs/requirements/TEMPLATE.md",

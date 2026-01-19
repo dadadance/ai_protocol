@@ -12,9 +12,10 @@ Before starting any major task, fetch the required context.
 | Task / Need | Command |
 | :--- | :--- |
 | **Project Setup & Rules** | `uv scripts/context.py fetch protocol:init` |
-| **Branching & Scope** | `uv scripts/context.py fetch protocol:branching` |
-| **Coding Standards** | `uv scripts/context.py fetch protocol:standards` |
-| **Scripts Catalog** | `uv scripts/context.py fetch protocol:scripts` |
+| **Branching & Scope** | `python3 scripts/context.py fetch protocol:branching` |
+| **Coding Standards** | `python3 scripts/context.py fetch protocol:standards` |
+| **Testing Strategy** | `python3 scripts/context.py fetch protocol:testing` |
+| **Scripts Catalog** | `python3 scripts/context.py fetch protocol:scripts` |
 | **Current Progress** | `uv scripts/context.py fetch protocol:progress` |
 
 ## 2. Dynamic Retrieval

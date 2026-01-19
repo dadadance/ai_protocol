@@ -440,24 +440,21 @@ def fetch_user(user_id: int, include_deleted: bool = False) -> Optional[User]:
 
 ## 7. Testing Standards
 
-### 7.1. Test Structure
-- **Arrange-Act-Assert (AAA):** Clear separation in each test
-- **One Assertion Per Test:** Test one behavior at a time
-- **Descriptive Names:** `test_<function>_<scenario>_<expected_result>`
+> **Detailed Guidelines:** See [`docs/TESTING.md`](./TESTING.md) for full testing protocols, runner configuration, and mocking strategies.
 
-### 7.2. Test Naming Examples
-```
-def test_calculate_discount_with_zero_percentage_returns_zero():
-    ...
+### 7.1. Test Structure (AAA)
+- **Arrange:** Prepare inputs and targets.
+- **Act:** Perform the operation.
+- **Assert:** Verify the result (one logical assertion per test).
 
-def test_fetch_user_with_invalid_id_raises_value_error():
-    ...
-```
+### 7.2. Naming Convention
+- `test_<function_name>_<scenario>_<expected_result>`
+- Example: `test_calculate_discount_with_negative_price_raises_error`
 
 ### 7.3. Coverage Goals
-- **Unit Tests:** Cover all pure functions and business logic
-- **Integration Tests:** Cover boundaries (APIs, DB, external services)
-- **Happy Path + Edge Cases:** Test both success and failure scenarios
+- **Unit Tests:** 100% coverage for pure functions.
+- **Integration Tests:** Verify boundaries (DB, API).
+- **Happy Path & Edge Cases:** Test success and failure modes explicitly.
 
 ---
 

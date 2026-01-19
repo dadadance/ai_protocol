@@ -14,6 +14,7 @@ Before starting any major task, fetch the required context.
 | **Project Setup & Rules** | `python3 scripts/context.py fetch protocol:init` |
 | **Branching & Scope** | `python3 scripts/context.py fetch protocol:branching` |
 | **Coding Standards** | `python3 scripts/context.py fetch protocol:standards` |
+| **Testing Strategy** | `python3 scripts/context.py fetch protocol:testing` |
 | **Scripts Catalog** | `python3 scripts/context.py fetch protocol:scripts` |
 | **Current Progress** | `python3 scripts/context.py fetch protocol:progress` |
 
