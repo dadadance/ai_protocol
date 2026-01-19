@@ -27,13 +27,19 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 - **Goal:** [Enter project goal]
 - **Tech Stack:** [Enter primary languages/frameworks]
 
-### 1.1. Tooling & Environment <!-- CUSTOMIZE -->
+### 1.1. Architecture & Domain Logic <!-- CUSTOMIZE -->
+- **Key Constraints:** [e.g., 1:1:1 mapping, single JSON storage, etc.]
+- **Data Flow:** [e.g., Headless API -> Local DB -> UI]
+- **Core Models:** [List critical entities]
+
+### 1.2. Tooling & Environment <!-- CUSTOMIZE -->
 - **Package Manager:** [e.g., uv, pnpm, cargo] - STRICTLY USE THIS.
 - **Environment:** [e.g., Local .venv, Docker]
 - **Run Commands:**
-  - Build: `[command]`
+  - Build/Server: `[command]`
   - Test: `[command]`
   - Lint: `[command]`
+  - CLI Entry: `[command]`
 
 ## 2. Coding Standards & Conventions
 

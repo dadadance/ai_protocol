@@ -8,10 +8,10 @@
 
 | Field | Value |
 |-------|-------|
-| **Current Phase** | Setup / Initial Development |
-| **Next Milestone** | [Define milestone] |
+| **Current Phase** | **Protocol Refinement & Consolidation** |
+| **Next Milestone** | Standardization of Agent Tools |
 | **Active Branch** | `main` |
-| **Last Updated** | YYYY-MM-DD |
+| **Last Updated** | 2026-01-20 |
 
 ---
 
@@ -19,8 +19,7 @@
 
 > Tasks currently in progress. Move to Completed when done.
 
-- [ ] [Task description] — *Owner: [name/AI]* — *Branch: [branch-name]*
-- [ ] [Task description] — *Owner: [name/AI]* — *Branch: [branch-name]*
+- [ ] Define standard tool definitions for agents — *Owner: AI* — *Branch: feat/tool-standards*
 
 ---
 
@@ -30,7 +29,7 @@
 
 | Blocker | Impact | Status | Notes |
 |---------|--------|--------|-------|
-| [Description] | High/Med/Low | Open/Resolved | [Context] |
+| (none) | | | |
 
 ---
 
@@ -38,7 +37,9 @@
 
 > Finished work. Include date and relevant branch/PR.
 
-- [x] **YYYY-MM-DD:** [Task description] — *Branch: [branch]* — *PR: [link]*
+- [x] **2026-01-20:** Scanned and consolidated protocols from `cenomi/odoo_v1` and `cv-maker`. — *Branch: main*
+- [x] **2026-01-20:** Created `examples/` directory with real-world protocol usages. — *Branch: main*
+- [x] **2026-01-20:** Updated `PROTOCOL.md` template with Architecture section and strict safety rules. — *Branch: main*
 
 ---
 
@@ -48,9 +49,9 @@
 
 | Priority | Task | Notes |
 |----------|------|-------|
-| High | [Task] | [Context] |
-| Medium | [Task] | [Context] |
-| Low | [Task] | [Context] |
+| High | Create standard `SCRIPTS_CATALOG.md` template | |
+| Medium | Document 'Context Injection' patterns | |
+| Low | Create CLI tool to auto-generate context files | |
 
 ---
 
@@ -60,4 +61,5 @@
 
 | Date | Event | Details |
 |------|-------|---------|
+| 2026-01-20 | Protocol Consolidation | Merged best practices from Odoo and Django projects into master protocol. |
 | YYYY-MM-DD | Project initialized | Initial setup with AI protocol template |
