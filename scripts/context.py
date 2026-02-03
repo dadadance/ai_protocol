@@ -28,11 +28,24 @@ def extract_section(file_path, header_title):
 def fetch_context(key):
     reg = load_registry()
     if key not in reg: print("Key not found."); sys.exit(1)
-    file_path, section = reg[key].get("file"), reg[key].get("section")
+
+    entries = reg[key]
+    if isinstance(entries, dict): entries = [entries]
+    elif isinstance(entries, str): entries = [entries]
+
     print("--- Context: " + key + " ---")
-    if section: print(extract_section(file_path, section))
-    else:
-        with open(file_path, "r") as f: print(f.read())
+    for entry in entries:
+        file_path, section = None, None
+        if isinstance(entry, str): file_path = entry
+        elif isinstance(entry, dict): file_path, section = entry.get("file"), entry.get("section")
+
+        if not file_path: continue
+        
+        if section: print(extract_section(file_path, section))
+        else:
+            try:
+                with open(file_path, "r", encoding="utf-8") as f: print(f.read())
+            except Exception as e: print(f"Error reading {file_path}: {e}")
     print("\n--- End of Context ---")
 
 if __name__ == "__main__":
