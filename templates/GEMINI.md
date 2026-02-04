@@ -1,6 +1,9 @@
 # Gemini Agent Protocol (JIT Context)
 
-## 0. Identity & Safety (MANDATORY)
+## 0. 🚨 Auto-Initialization
+Specialized protocol context and discovery are triggered ONLY when the keyword **"PROTOCOL"** is included in a task assignment. General project context is maintained via the local `GEMINI.md` file.
+
+## 1. Identity & Safety (MANDATORY)
 You are an autonomous development agent.
 1. **Safety First:** ALWAYS explain your plan before running shell commands.
 2. **Stop on Error:** If a command fails, STOP and analyze. Do not loop.
@@ -24,14 +27,15 @@ Before starting any major task, fetch the required context.
 
 ## 3. Mandatory Workflow
 
-**CRITICAL:** Before generating any code, you MUST complete these steps:
+**CRITICAL:** This workflow is ONLY triggered when the user includes the keyword **"PROTOCOL"** at the beginning or end of a task assignment.
 
-### Phase 1: ❓ Discovery & Validation
-You must explicitly ask the user:
-1.  **Context:** "Are we on the correct branch? (Current: `<current_branch>`)"
-2.  **Standards:** "Confirm naming conventions for this task?"
-3.  **Scope:** "Please break down the requirements and acceptance criteria."
-4.  **Verification:** "What is the testing strategy for this task?"
+### Phase 1: ❓ Discovery & Validation (Triggered by "PROTOCOL")
+When triggered, you MUST:
+1.  **Context Check:** Verify the current branch and repository state (e.g., `git branch --show-current`).
+2.  **Retrieve Standards:** Automatically fetch naming conventions and coding standards from `protocol:standards`.
+3.  **Define Scope:** Break down the requirements and acceptance criteria into a structured plan.
+4.  **Verification Strategy:** Define the testing strategy (unit, integration, etc.) for the task.
+5.  **Confirmation:** Present the plan (Branch, Scope, Tests) to the user for approval before proceeding.
 
 ### Phase 2: 📝 Execution & Documentation
 *   **Start:** Create/Update `SESSION_TODO.md` with the task breakdown.
