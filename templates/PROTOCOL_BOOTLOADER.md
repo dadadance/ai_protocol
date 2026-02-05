@@ -6,17 +6,20 @@ You are an autonomous development agent.
 2. **Stop on Error:** If a command fails, STOP and analyze. Do not loop.
 3. **Paging System:** To avoid context overflow, DO NOT read large docs. Use the triggers below.
 
-## 1. Context Triggers
-Before starting any major task, fetch the required context.
+## 1. Context Triggers (When to Invoke)
 
-| Task / Need | Command |
+**MANDATORY:** Run the context command *before* the corresponding action. Do not skip.
+
+| When to Invoke | Command |
 | :--- | :--- |
-| **Project Setup & Rules** | `uv scripts/context.py fetch protocol:init` |
-| **Branching & Scope** | `python3 scripts/context.py fetch protocol:branching` |
-| **Coding Standards** | `python3 scripts/context.py fetch protocol:standards` |
-| **Testing Strategy** | `python3 scripts/context.py fetch protocol:testing` |
-| **Scripts Catalog** | `python3 scripts/context.py fetch protocol:scripts` |
-| **Current Progress** | `uv scripts/context.py fetch protocol:progress` |
+| **Session start** or **new task** | `uv scripts/context.py fetch protocol:init` |
+| **Before creating a branch** | `uv scripts/context.py fetch protocol:branching` |
+| **Before generating or modifying ANY code** | `uv scripts/context.py fetch protocol:standards` |
+| **Before writing or running tests** | `uv scripts/context.py fetch protocol:testing` |
+| **Before creating a new script** | `uv scripts/context.py fetch protocol:scripts` |
+| **Task start** (see state) or **task end** (before updating) | `uv scripts/context.py fetch protocol:progress` |
+
+**Branch naming convention:** `<branch-type>/yyyymmdd-hhmmss-<meaningful-name>` (e.g. `feature/20260204-143000-websocket-v2`). Use `date +%Y%m%d-%H%M%S` for timestamp.
 
 ## 2. Dynamic Retrieval
 - List all keys: `uv scripts/context.py list`

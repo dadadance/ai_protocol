@@ -21,6 +21,11 @@ def setup_args():
     parser.add_argument("target_dir", help="Target project directory")
     parser.add_argument("--agent", default="GEMINI", help="Name of the agent file (default: GEMINI)")
     parser.add_argument("--force", action="store_true", help="Overwrite existing files")
+    parser.add_argument(
+        "--monorepo-submodule",
+        action="store_true",
+        help="Inject thin agent file from AGENT_SUBMODULE.md (for submodules delegating to root)",
+    )
     return parser.parse_args()
 
 def resolve_roots():
@@ -52,22 +57,17 @@ def main():
     print(f"🤖 Agent Name: {agent_name}")
     print("-" * 40)
 
-    # Define the payload mapping: Source (in templates/) -> Destination (in target/)
-    # We map specific files to ensure controlled injection.
-    
-    # 1. Determine which agent file to use.
-    # Priority: Specific file (e.g., GEMINI.md) -> Generic Bootloader -> Fail
-    source_agent_file = templates_root / agent_file_name
-    if not source_agent_file.exists():
-        # Fallback to PROTOCOL_BOOTLOADER.md if specific agent file doesn't exist
+    # Agent file source: full bootloader or thin submodule template
+    if args.monorepo_submodule:
+        source_agent_file = templates_root / "AGENT_SUBMODULE.md"
+    else:
         source_agent_file = templates_root / "PROTOCOL_BOOTLOADER.md"
-        if not source_agent_file.exists():
-             print(f"❌ Error: Could not find {agent_name}.md or PROTOCOL_BOOTLOADER.md in templates.")
-             sys.exit(1)
-        print(f"ℹ️  Using generic bootloader for {agent_name}...")
-    
+    if not source_agent_file.exists():
+        print(f"❌ Error: {source_agent_file.name} not found in templates.")
+        sys.exit(1)
+
     payload = {
-        # Agent File
+        # Agent file: bootloader or submodule template copied as <Agent>.md
         source_agent_file.name: agent_file_name,
         
         # Core Files

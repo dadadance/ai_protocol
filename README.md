@@ -45,26 +45,58 @@ The script will inject all necessary files. You may want to:
 - Customize `docs/CODING_STANDARDS.md` for your specific tech stack.
 
 ### 3. Initialize your Agent
-Open your project and provide your AI agent with this activation prompt:
+Open your project and provide your AI agent with this activation prompt (use the agent file name you chose, e.g. GEMINI.md or CLAUDE.md):
 > "I have initialized the AI Protocol for this project. Please read GEMINI.md to bootstrap your context and confirm you are ready."
 
 ## 📁 Repository Structure
 
+**In this repo (ai-protocol):** One agent instruction template; bootstrap creates the agent file in the target.
+
 ```text
-.
-├── PROTOCOL.md           # Full protocol content (Master Source)
-├── PROTOCOL_BOOTLOADER.md # Lightweight entry point for agents (Template)
-├── GEMINI.md             # Example: JIT bootloader for Gemini agents
-├── SCRIPTS-CATALOG.md    # Registry of automation scripts
-├── docs/
-│   ├── CODING_STANDARDS.md  # Universal engineering guidelines
-│   ├── PROGRESS.md          # Project-wide status tracker (Template)
-│   ├── context_registry.json # Mapping for JIT context fetching
-│   └── requirements/        # Task-specific requirement documents
-└── scripts/
-    ├── context.py           # The JIT context engine
-    └── bootstrap.py         # The one-command protocol installer
+ai-protocol/
+├── templates/
+│   ├── PROTOCOL_BOOTLOADER.md   # Single source for agent instructions
+│   ├── AGENT_SUBMODULE.md       # Thin agent file for monorepo submodules
+│   ├── PROTOCOL.md              # Full protocol (fetched via context.py)
+│   ├── SCRIPTS-CATALOG.md       # Registry of automation scripts
+│   ├── docs/
+│   │   ├── CODING_STANDARDS.md  # Universal engineering guidelines
+│   │   ├── PROGRESS.md          # Project-wide status tracker (Template)
+│   │   ├── context_registry.json # Mapping for JIT context fetching
+│   │   └── requirements/        # Task-specific requirement documents
+│   └── scripts/context.py      # JIT context engine (injected to target)
+└── scripts/bootstrap.py        # One-command protocol installer
 ```
+
+**After bootstrap**, the target project gets e.g. `GEMINI.md` or `CLAUDE.md` (content from PROTOCOL_BOOTLOADER.md), plus `docs/`, `scripts/context.py`, and `SCRIPTS-CATALOG.md`.
+
+## Single-project vs monorepo
+
+- **Single-project mode (default):** One repo, one protocol. Bootstrap injects the full agent file (e.g. `GEMINI.md`), `scripts/context.py`, and `docs/` into that repo. The agent runs in that repo and uses local context only.
+- **Monorepo mode:** Protocol and context live at the **repository root**. The root has the full bootloader (in `GEMINI.md` / `CLAUDE.md`), `scripts/context.py`, and `docs/context_registry.json`. Submodules get a **thin agent file** that delegates to the root:
+  - Run bootstrap with `--monorepo-submodule` to inject `templates/AGENT_SUBMODULE.md` as e.g. `GEMINI.md`:  
+    `uv run scripts/bootstrap.py /path/to/submodule --agent gemini --monorepo-submodule`
+  - Then edit the injected file: replace `{{MODULE_NAME}}` and `{{ONE_LINE_DESCRIPTION}}` (and links to the root agent file if your layout differs).
+  - The agent should use the root for protocol and JIT context (e.g. run `./scripts/context.py` from repo root).
+
+After bootstrap in a monorepo, you can replace a submodule’s agent file with the thin template so submodule sessions still get protocol and context from the root.
+
+## Protocol version and drift check
+
+The template injects `_meta.protocol_version` in `docs/context_registry.json` (e.g. `1.0.0`). The canonical version lives in this repo's `VERSION` file. To check if a target project is in sync:
+
+```bash
+# From ai-protocol directory
+uv run scripts/check_protocol.py /path/to/target
+```
+
+If omitted, the target defaults to the current directory. Exit code 0 means version match or no version to compare; exit code 1 means drift. The script does not modify any files.
+
+## Development (this repo)
+
+- Install dev deps: `uv sync --extra dev` (includes Ruff).
+- Lint: `uv run ruff check .`
+- Format: `uv run ruff format .`
 
 ## 📄 License
 [MIT License](./LICENSE)

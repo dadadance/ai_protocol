@@ -40,8 +40,7 @@
 
 | Script | Description | Usage |
 |--------|-------------|-------|
-| `scripts/context.py` | Core JIT context management tool for agents | `python3 scripts/context.py fetch <key>` |
-| `scripts/bootstrap.py` | Injects protocol files into other projects | `uv run scripts/bootstrap.py <target_dir>` |
+| `scripts/context.py` | JIT context engine: fetch docs by key (repo-root resolved) | `uv run scripts/context.py fetch <key>` / `list` |
 
 
 ---

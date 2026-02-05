@@ -14,6 +14,7 @@
 | **pytest** | Test Runner & Framework | `uv run pytest` |
 | **pytest-cov** | Coverage Reporting | `uv run pytest --cov=src` |
 | **unittest.mock** | Mocking & Spying | Standard Library |
+| **Ruff** | Linting & Formatting | `uv run ruff check .` / `uv run ruff format .` |
 
 ---
 
@@ -113,4 +114,4 @@ uv run pytest --cov=src --cov-report=term-missing
 
 Tests are automatically run on every Pull Request.
 *   **Blocker:** If tests fail, the PR cannot be merged.
-*   **Linting:** Code style (ruff/black) is checked alongside tests.
+*   **Linting:** Ruff (lint + format) is run alongside tests. Command: `uv run ruff check . && uv run ruff format --check .`

@@ -37,8 +37,8 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 - **Environment:** [e.g., Local .venv, Docker]
 - **Run Commands:**
   - Build/Server: `[command]`
-  - Test: `[command]`
-  - Lint: `[command]`
+  - Test: `[command]` (Ref: `docs/TESTING.md`)
+  - Lint: `uv run ruff check .` (format: `uv run ruff format .`)
   - CLI Entry: `[command]`
 
 ## 2. Coding Standards & Conventions
@@ -73,8 +73,8 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 
 ### 2.3. Verification Standard <!-- CUSTOMIZE -->
 - **Test Command:** Run `[command]` (Ref: `docs/TESTING.md`) before requesting any commit.
-- **Lint Command:** Run `[command]` to ensure style compliance.
-- **Definition of Done:** All tests pass, linting passes, and documentation is updated.
+- **Lint Command:** Run `uv run ruff check .` (and `uv run ruff format .` if formatting is enforced). See `docs/TESTING.md`.
+- **Definition of Done:** All tests pass, Ruff lint (and format) passes, and documentation is updated.
 
 ### 2.4. Architectural Constraints <!-- CUSTOMIZE -->
 - **Headless-First:** ALL core functionality MUST be accessible via CLI. No UI-only features.
@@ -85,3 +85,17 @@ To minimize hallucination and ensure strict alignment with project goals, the AI
 - **Preferred Libraries:** Native/standard library first, then vetted third-party.
 - **Directory Structure:** Do not create files in root without permission. Follow the established folder hierarchy.
 - **Security:** Never commit secrets or hardcoded credentials. Use environment variables.
+
+## 3. Workflow Commands (Optional)
+
+<!-- CUSTOMIZE: For monorepos or multi-repo setups, document the commands agents must use here. Fetch via context key `protocol:workflow`. -->
+
+| When | Command |
+|------|---------|
+| Start of session | `./scripts/update_all.sh` (or your update command) |
+| Check status | `./scripts/status_all.sh` |
+| Commit and push everything | `./scripts/commit_all.sh "message"` |
+| End of session | Commit/push then update progress (e.g. `SESSION_TODO.md` or `docs/PROGRESS.md`) |
+
+- Prefer automation scripts over manual git in each repo/submodule.
+- Keep this section in sync with the root agent file (e.g. CLAUDE.md / GEMINI.md) so one source drives all agents.

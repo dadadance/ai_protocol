@@ -1,34 +1,15 @@
 {
-  "protocol:init": {
-    "file": "PROTOCOL.md",
-    "section": "0. Core Protocol: Context & Requirements (MANDATORY)"
+  "_meta": {
+    "protocol_version": "1.0.0",
+    "description": "JIT context registry; _meta keys are ignored by context.py"
   },
-  "protocol:safety": {
-    "file": "PROTOCOL.md",
-    "section": "0.1. Safety & Autonomy (Strict)"
-  },
-  "protocol:branching": {
-    "file": "PROTOCOL.md",
-    "section": "2.1. Strict Protocol: Git Branching & Scope"
-  },
-  "protocol:documentation": {
-    "file": "PROTOCOL.md",
-    "section": "2.2. Documentation Protocol (Mandatory)"
-  },
-  "protocol:standards": {
-    "file": "docs/CODING_STANDARDS.md",
-    "section": null
-  },
-  "protocol:testing": {
-    "file": "docs/TESTING.md",
-    "section": null
-  },
-  "protocol:scripts": {
-    "file": "SCRIPTS-CATALOG.md",
-    "section": null
-  },
-  "protocol:progress": {
-    "file": "docs/PROGRESS.md",
-    "section": "Active Tasks"
-  }
+  "protocol:init": {"file": "PROTOCOL.md", "section": "0. Core Protocol: Context & Requirements (MANDATORY)"},
+  "protocol:safety": {"file": "PROTOCOL.md", "section": "0.1. Safety & Autonomy (Strict)"},
+  "protocol:branching": {"file": "PROTOCOL.md", "section": "2.1. Strict Protocol: Git Branching & Scope"},
+  "protocol:documentation": {"file": "PROTOCOL.md", "section": "2.2. Documentation Protocol (Mandatory)"},
+  "protocol:standards": {"file": "docs/CODING_STANDARDS.md", "section": "1. Core Philosophy"},
+  "protocol:testing": {"file": "docs/TESTING.md", "section": "1. Testing Framework & Tools"},
+  "protocol:scripts": {"file": "SCRIPTS-CATALOG.md", "section": "Quick Reference"},
+  "protocol:progress": {"file": "docs/PROGRESS.md", "section": "Active Tasks"},
+  "protocol:workflow": {"file": "PROTOCOL.md", "section": "3. Workflow Commands (Optional)"}
 }

@@ -467,6 +467,7 @@ def fetch_user(user_id: int, include_deleted: bool = False) -> Optional[User]:
 - Use `dataclasses` or `NamedTuple` for structured data
 - Prefer `pathlib` over `os.path`
 - Use `with` statements for resource management
+- **Linting & formatting:** Use [Ruff](https://docs.astral.sh/ruff/). Run `uv run ruff check .` and `uv run ruff format .` before commit. Add Ruff to the project (e.g. `uv add --dev ruff`) and configure in `pyproject.toml` under `[tool.ruff]`.
 
 ### JavaScript/TypeScript
 - Use `const` by default, `let` when mutation needed, never `var`

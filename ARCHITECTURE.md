@@ -8,9 +8,7 @@ This repository serves as the central source of truth for the AI Agent Protocol.
 ai_protocol/ (Root)
 │
 ├── templates/ ........................ [THE PAYLOAD] "Golden Copy" of all files
-│   ├── GEMINI.md                       # Protocol instructions for Gemini
-│   ├── CLAUDE.md                       # Protocol instructions for Claude
-│   ├── PROTOCOL_BOOTLOADER.md          # Generic entry point
+│   ├── PROTOCOL_BOOTLOADER.md          # Single source: agent instructions (→ GEMINI.md / CLAUDE.md at inject)
 │   ├── SCRIPTS-CATALOG.md              # Template registry
 │   │
 │   ├── docs/ ......................... [Documentation Templates]
@@ -25,8 +23,10 @@ ai_protocol/ (Root)
 │       └── context.py                  # The JIT Context Engine (deployed to target)
 │
 ├── scripts/ .......................... [THE INJECTOR] Tools for *this* repo
-│   └── bootstrap.py                    # The "Seeder" script
+│   ├── bootstrap.py                    # The "Seeder" script
+│   └── check_protocol.py               # Compare protocol version with a target (drift check)
 │
+├── VERSION                             # Protocol version (e.g. 1.0.0)
 ├── README.md
 └── LICENSE
 ```
@@ -40,13 +40,13 @@ When you run `bootstrap.py`, it acts as a "Seeder," copying files from `template
        ───────────────────────────────                  ────────────────
                                                         (e.g., ../cv_maker)
 
-          templates/GEMINI.md  ───────(Rename)───────►  GEMINI.md
+          PROTOCOL_BOOTLOADER.md ────(Copy as <Agent>.md)──►  GEMINI.md | CLAUDE.md
                                           │
           templates/docs/*     ────────(Copy)────────►  docs/*
                                           │
           templates/scripts/*  ────────(Copy)────────►  scripts/context.py
                                           │
-          templates/CATALOG.md ────────(Copy)────────►  SCRIPTS-CATALOG.md
+          SCRIPTS-CATALOG.md   ────────(Copy)────────►  SCRIPTS-CATALOG.md
 ```
 
 ## 3. Workflow for a New Project
@@ -59,7 +59,7 @@ When you run `bootstrap.py`, it acts as a "Seeder," copying files from `template
 
 2.  **Result in Target:**
     The new project is instantly hydrated with the full protocol stack:
-    *   `GEMINI.md` (Active agent file)
+    *   `<Agent>.md` (e.g. GEMINI.md or CLAUDE.md — copied from PROTOCOL_BOOTLOADER.md)
     *   `scripts/context.py` (JIT tool)
     *   `docs/` (Standards & Progress)
 
