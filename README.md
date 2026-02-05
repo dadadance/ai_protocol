@@ -76,10 +76,22 @@ ai-protocol/
 - **Monorepo mode:** Protocol and context live at the **repository root**. The root has the full bootloader (in `GEMINI.md` / `CLAUDE.md`), `scripts/context.py`, and `docs/context_registry.json`. Submodules get a **thin agent file** that delegates to the root:
   - Run bootstrap with `--monorepo-submodule` to inject `templates/AGENT_SUBMODULE.md` as e.g. `GEMINI.md`:  
     `uv run scripts/bootstrap.py /path/to/submodule --agent gemini --monorepo-submodule`
-  - Then edit the injected file: replace `{{MODULE_NAME}}` and `{{ONE_LINE_DESCRIPTION}}` (and links to the root agent file if your layout differs).
+  - Use `--module-name` and `--description` to auto-fill placeholders:  
+    `uv run scripts/bootstrap.py /path/to/submodule --agent gemini --monorepo-submodule --module-name "my-module" --description "One-line description"`
+  - Or manually edit the injected file to replace `{{MODULE_NAME}}` and `{{ONE_LINE_DESCRIPTION}}`.
   - The agent should use the root for protocol and JIT context (e.g. run `./scripts/context.py` from repo root).
 
-After bootstrap in a monorepo, you can replace a submodule’s agent file with the thin template so submodule sessions still get protocol and context from the root.
+After bootstrap in a monorepo, you can replace a submodule's agent file with the thin template so submodule sessions still get protocol and context from the root.
+
+### Monorepo context.py limitations
+
+`context.py` resolves the repository root using `git rev-parse --show-toplevel`. In a monorepo with git submodules, this command returns the **submodule's** root when run from inside a submodule, not the parent monorepo's root. This means:
+
+- **Always run `context.py` from the monorepo root**, not from inside a submodule.
+- Alternatively, set the `REPO_ROOT` environment variable to the monorepo root before running `context.py`.
+- You can also call the root's `context.py` explicitly from submodules: `../scripts/context.py fetch <key>` (adjust path as needed).
+
+If you run `context.py` from inside a submodule without these precautions, it will look for `docs/context_registry.json` in the submodule (which may not exist or may have different content).
 
 ## Protocol version and drift check
 

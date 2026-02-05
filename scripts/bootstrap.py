@@ -26,6 +26,14 @@ def setup_args():
         action="store_true",
         help="Inject thin agent file from AGENT_SUBMODULE.md (for submodules delegating to root)",
     )
+    parser.add_argument(
+        "--module-name",
+        help="Module name to substitute in AGENT_SUBMODULE.md (replaces {{MODULE_NAME}})",
+    )
+    parser.add_argument(
+        "--description",
+        help="One-line description to substitute in AGENT_SUBMODULE.md (replaces {{ONE_LINE_DESCRIPTION}})",
+    )
     return parser.parse_args()
 
 def resolve_roots():
@@ -72,6 +80,7 @@ def main():
         
         # Core Files
         "SCRIPTS-CATALOG.md": "SCRIPTS-CATALOG.md",
+        "PROTOCOL.md": "PROTOCOL.md",
         
         # Docs
         "docs/CODING_STANDARDS.md": "docs/CODING_STANDARDS.md",
@@ -109,6 +118,21 @@ def main():
                 created_count += 1
             except Exception as e:
                 print(f"❌ Failed to copy {src_rel}: {e}")
+
+    # Substitute placeholders in agent file if using monorepo-submodule with flags
+    if args.monorepo_submodule and (args.module_name or args.description):
+        agent_dest = target_root / agent_file_name
+        if agent_dest.exists():
+            try:
+                content = agent_dest.read_text(encoding="utf-8")
+                if args.module_name:
+                    content = content.replace("{{MODULE_NAME}}", args.module_name)
+                if args.description:
+                    content = content.replace("{{ONE_LINE_DESCRIPTION}}", args.description)
+                agent_dest.write_text(content, encoding="utf-8")
+                print(f"✅ Substituted placeholders in {agent_file_name}")
+            except Exception as e:
+                print(f"⚠️  Warning: Failed to substitute placeholders: {e}")
 
     print("-" * 40)
     print(f"🎉 Bootstrap Complete! ({created_count} created, {skipped_count} skipped)")

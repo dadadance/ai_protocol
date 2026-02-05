@@ -12,7 +12,7 @@ from pathlib import Path
 REGISTRY_FILENAME = "docs/context_registry.json"
 
 
-def get_repo_root(cwd: Path) -> Path | None:
+def get_repo_root(cwd: Path) -> Path:
     """Resolve git repo root; fallback to REPO_ROOT env, then cwd."""
     try:
         out = subprocess.run(
