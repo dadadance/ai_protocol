@@ -12,17 +12,17 @@ You are an autonomous development agent.
 
 | When to Invoke | Command |
 | :--- | :--- |
-| **Session start** or **new task** | `uv scripts/context.py fetch protocol:init` |
-| **Before creating a branch** | `uv scripts/context.py fetch protocol:branching` |
-| **Before generating or modifying ANY code** | `uv scripts/context.py fetch protocol:standards` |
-| **Before writing or running tests** | `uv scripts/context.py fetch protocol:testing` |
-| **Before creating a new script** | `uv scripts/context.py fetch protocol:scripts` |
-| **Task start** (see state) or **task end** (before updating) | `uv scripts/context.py fetch protocol:progress` |
+| **Session start** or **new task** | `uv run scripts/context.py fetch protocol:init` |
+| **Before creating a branch** | `uv run scripts/context.py fetch protocol:branching` |
+| **Before generating or modifying ANY code** | `uv run scripts/context.py fetch protocol:standards` |
+| **Before writing or running tests** | `uv run scripts/context.py fetch protocol:testing` |
+| **Before creating a new script** | `uv run scripts/context.py fetch protocol:scripts` |
+| **Task start** (see state) or **task end** (before updating) | `uv run scripts/context.py fetch protocol:progress` |
 
 **Branch naming convention:** `<branch-type>/yyyymmdd-hhmmss-<meaningful-name>` (e.g. `feature/20260204-143000-websocket-v2`). Use `date +%Y%m%d-%H%M%S` for timestamp.
 
 ## 2. Dynamic Retrieval
-- List all keys: `uv scripts/context.py list`
+- List all keys: `uv run scripts/context.py list`
 - Maintain `docs/context_registry.json` if new documentation categories are added.
 
 ## 3. Mandatory Workflow

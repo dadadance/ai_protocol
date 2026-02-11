@@ -1,1 +1,0 @@
-templates/GEMINI.md

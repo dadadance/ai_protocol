@@ -58,10 +58,13 @@ def extract_section(file_path: Path, header_title: str) -> str:
     except OSError as e:
         return f"Error reading {file_path}: {e}"
     capturing, captured_lines, target_level = False, [], 0
+    in_code_block = False
     search_title = header_title.lower().strip()
     for line in lines:
         stripped = line.lstrip()
-        if stripped.startswith("#"):
+        if stripped.startswith("```"):
+            in_code_block = not in_code_block
+        if not in_code_block and stripped.startswith("#"):
             parts = stripped.split(" ", 1)
             if len(parts) >= 2:
                 level, title = len(parts[0]), parts[1].strip().lower()
