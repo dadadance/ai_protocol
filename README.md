@@ -6,7 +6,7 @@ This protocol bridges the gap between raw LLM capabilities and professional engi
 
 ## 🎯 Purpose
 
-- **Zero-Hallucination Context:** Agents fetch task-specific requirements and standards dynamically.
+- **Context-Grounded Development:** Agents fetch task-specific requirements and standards dynamically, reducing hallucination by grounding decisions in real project documentation.
 - **Strict Safety Handshakes:** Mandatory explanation and confirmation for all system-modifying actions.
 - **Headless-First Engineering:** Prioritizes CLI accessibility and scriptability over fragile UI-only logic.
 - **Project Agnostic:** Designed to be dropped into any project (New or Existing, Python, JS, Go, etc.).
@@ -27,7 +27,7 @@ If you are starting a brand new project, use this one-liner from your projects d
 mkdir my-new-project && cd my-new-project && git init
 
 # 2. Inject the Protocol (assuming ai-protocol is a sibling directory)
-uv run ../ai-protocol/scripts/bootstrap.py . --agent gemini
+uv run ../ai-protocol/scripts/bootstrap.py . --agent claude
 ```
 
 ## 🚀 How to Adopt (Existing Projects)
@@ -36,7 +36,7 @@ uv run ../ai-protocol/scripts/bootstrap.py . --agent gemini
 From within this `ai_protocol` repository, run the bootstrapper pointing to your target project:
 
 ```bash
-uv run scripts/bootstrap.py /path/to/your/project --agent gemini
+uv run scripts/bootstrap.py /path/to/your/project --agent claude
 ```
 
 ### 2. Verify and Customize
@@ -75,9 +75,9 @@ ai-protocol/
 - **Single-project mode (default):** One repo, one protocol. Bootstrap injects the full agent file (e.g. `GEMINI.md`), `scripts/context.py`, and `docs/` into that repo. The agent runs in that repo and uses local context only.
 - **Monorepo mode:** Protocol and context live at the **repository root**. The root has the full bootloader (in `GEMINI.md` / `CLAUDE.md`), `scripts/context.py`, and `docs/context_registry.json`. Submodules get a **thin agent file** that delegates to the root:
   - Run bootstrap with `--monorepo-submodule` to inject `templates/AGENT_SUBMODULE.md` as e.g. `GEMINI.md`:  
-    `uv run scripts/bootstrap.py /path/to/submodule --agent gemini --monorepo-submodule`
+    `uv run scripts/bootstrap.py /path/to/submodule --agent claude --monorepo-submodule`
   - Use `--module-name` and `--description` to auto-fill placeholders:  
-    `uv run scripts/bootstrap.py /path/to/submodule --agent gemini --monorepo-submodule --module-name "my-module" --description "One-line description"`
+    `uv run scripts/bootstrap.py /path/to/submodule --agent claude --monorepo-submodule --module-name "my-module" --description "One-line description"`
   - Or manually edit the injected file to replace `{{MODULE_NAME}}` and `{{ONE_LINE_DESCRIPTION}}`.
   - The agent should use the root for protocol and JIT context (e.g. run `./scripts/context.py` from repo root).
 

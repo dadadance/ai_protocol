@@ -135,6 +135,7 @@ def main() -> None:
     registry = load_registry(registry_path)
 
     if len(sys.argv) < 2:
+        print("Usage: context.py {list|fetch <key>}", file=sys.stderr)
         sys.exit(1)
     if sys.argv[1] == "list":
         for k in registry:
@@ -146,6 +147,7 @@ def main() -> None:
             sys.exit(1)
         fetch_context(sys.argv[2], registry, repo_root)
     else:
+        print("Usage: context.py {list|fetch <key>}", file=sys.stderr)
         sys.exit(1)
 
 

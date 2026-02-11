@@ -19,7 +19,9 @@ from pathlib import Path
 def setup_args():
     parser = argparse.ArgumentParser(description="Inject AI Protocol into a project.")
     parser.add_argument("target_dir", help="Target project directory")
-    parser.add_argument("--agent", default="GEMINI", help="Name of the agent file (default: GEMINI)")
+    parser.add_argument(
+        "--agent", required=True, help="Name of the agent file (e.g. claude, gemini)",
+    )
     parser.add_argument("--force", action="store_true", help="Overwrite existing files")
     parser.add_argument(
         "--monorepo-submodule",
@@ -112,8 +114,9 @@ def main():
             skipped_count += 1
         else:
             try:
+                existed = dest_path.exists()
                 shutil.copy2(src_path, dest_path)
-                status = "Overwritten" if dest_path.exists() and args.force else "Created"
+                status = "Overwritten" if existed and args.force else "Created"
                 print(f"✅ {status}: {dest_rel}")
                 created_count += 1
             except Exception as e:
