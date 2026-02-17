@@ -1,13 +1,17 @@
 [project]
 name = "ai-protocol"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "AI Agent Development Protocol — a portable framework for disciplined AI-assisted software engineering"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["ruff>=0.8"]
+dev = ["ruff>=0.8", "pytest>=8.0", "pytest-cov>=6.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: end-to-end subprocess tests"]
 
 [tool.ruff]
 target-version = "py313"
